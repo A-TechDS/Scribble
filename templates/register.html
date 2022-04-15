@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+ 
+<div class="min-h-screen bg-no-repeat bg-cover bg-center"
+style="background-image: url('https://images.unsplash.com/photo-1486520299386-6d106b22014b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80')">
+<div class="flex justify-end">
+    <div class="bg-white min-h-screen w-1/2 flex justify-center items-center">
+        <div>
+
+            <form method="post" action="{{ url_for('login') }}">
+                <div>
+                    <img class="w-40 p-auto m-auto " src="/static/logo.png" alt="">
+                    <span class="text-sm text-center text-gray-900">Welcome to Scribble!</span>
+                    <h1 class="text-2xl text-center font-bold">Register a account</h1>
+                    <br>
+                    <h3>{{ register_message }}</h3>
+                </div>
+                <div class="mt-5">
+                    <label class="block text-md mb-2" for="username">Username</label>
+                    <input class="px-4 w-full border-2 py-2 rounded-md text-sm outline-none" type="text" name="username" placeholder="username">
+    </div>
+                    <div class="my-3">
+                        <label class="block text-md mb-2" for="password">Password</label>
+                        <input class="px-4 w-full border-2 py-2 rounded-md text-sm outline-none" type="password" name="password" placeholder="password">
+    </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <input class="cursor-pointer"  type="radio" name="rememberme">
+                                <span class="text-sm">Accept Terms and conditions</span>
+                            </div>
+                            
+                        </div>
+                        <div class="">
+                            <button type="submit" class="mt-4 mb-3 w-full bg-green-500 hover:bg-green-400 text-white py-2 rounded-md transition duration-100">Register!</button>
+                        
+                        </div>
+            </form>
+            <p class="mt-8">Have an account? <a href="{{ url_for('login') }}"><span class="cursor-pointer text-sm text-blue-600"> Login here!</span></a></p>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html>
