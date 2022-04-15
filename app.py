@@ -12,24 +12,31 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 sc = "ThisIsASecret466"
 
-   
+
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
 
-
     def __init__(self, email, password):
         self.email = email
         self.password = password
-        
+
 
 admin = Admin(app)
 admin.add_view(ModelView(User, db.session))
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
+    if session.get('logged_in'):
+        return redirect('home')
+    else:
+        return render_template('login.html', message="Please Login First")
+
+
+@app.route('/home')
+def home():
     return render_template('index.html')
 
 
@@ -37,7 +44,8 @@ def index():
 def register():
     if request.method == 'POST':
         try:
-            new = User(email=request.form.get['email'], unique=True, password=request.form.get['password'])
+            new = User(
+                email=request.form.get['email'], unique=True, password=request.form.get['password'])
             db.session.add(new)
             db.session.commit()
             return redirect(url_for('login'))
@@ -65,7 +73,6 @@ def login():
 def logout():
     session['logged_in'] = False
     return redirect(url_for('login'))
-
 
 
 app.secret_key = sc

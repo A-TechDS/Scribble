@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/a1c7b7a7-21a6-4d7d-8827-124382a6a558/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/scribble",
+  "appService.deploySubpath": "."
+}
